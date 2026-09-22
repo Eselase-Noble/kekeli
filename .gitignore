@@ -1,10 +1,20 @@
 node_modules/
+.next/
+out/
 dist/
+build/
 *.log
+
+# Next.js
+next-env.d.ts
+.vercel
+
+# Editors
+.idea/
+.vscode/
+.DS_Store
 
 # Local secrets & runtime data
 .env
+.env*.local
 data/
-*.sqlite
-*.sqlite-journal
-*.db

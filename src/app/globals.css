@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Kekeli design tokens
+   Subject: a home's electricity — the light, and the prepaid units that keep
+   it on. Amber/gold is "light"; a warm dark sidebar grounds the instrument;
+   green/red carry power state. Deliberately not ERP-blue or voucher-teal.
+   ========================================================================== */
+@theme {
+  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  /* neutrals — warm stone, not cream */
+  --color-paper: #f5f4f2;
+  --color-surface: #ffffff;
+  --color-inset: #efedea;
+  --color-line: #e7e5e4;
+  --color-ink: #1c1917;
+  --color-ink-2: #57534e;
+  --color-ink-3: #a8a29e;
+
+  /* sidebar — warm near-black */
+  --color-bark: #1a1512;
+  --color-bark-2: #2a231e;
+  --color-bark-text: #cfc7bf;
+  --color-bark-text-2: #8a8078;
+
+  /* brand — amber / gold (stored light) */
+  --color-brand-50: #fffbeb;
+  --color-brand-100: #fef3c7;
+  --color-brand-200: #fde68a;
+  --color-brand-400: #fbbf24;
+  --color-brand-500: #f59e0b;
+  --color-brand-600: #d97706;
+  --color-brand-700: #b45309;
+  --color-brand-800: #92400e;
+
+  /* power state */
+  --color-on: #15803d;
+  --color-on-50: #f0fdf4;
+  --color-on-200: #bbf7d0;
+  --color-off: #dc2626;
+  --color-off-50: #fef2f2;
+  --color-off-200: #fecaca;
+
+  --radius-card: 14px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  /* a raised content surface */
+  .surface {
+    @apply rounded-[14px] border border-line bg-surface;
+  }
+
+  /* small caps section/kpi label */
+  .kpi-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-3;
+  }
+
+  /* status pill */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] bg-brand-600 px-4 py-2.5
+      text-sm font-semibold text-white transition hover:bg-brand-700
+      focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-600/25
+      disabled:cursor-not-allowed disabled:opacity-55;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] border border-line bg-surface
+      px-4 py-2.5 text-sm font-semibold text-ink-2 transition hover:border-ink/25 hover:text-ink
+      focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ink/10;
+  }
+
+  .field {
+    @apply w-full rounded-[10px] border border-line bg-surface px-3.5 py-2.5 text-ink outline-none
+      transition placeholder:text-ink-3 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15;
+  }
+}
+
+/* The one bit of ambient motion: a live device's status dot breathes. */
+@keyframes kekeli-live {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-on) 50%, transparent); }
+  70% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-on) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-on) 0%, transparent); }
+}
+.live-dot { animation: kekeli-live 2.6s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot { animation: none; }
+}

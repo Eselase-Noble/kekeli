@@ -1,29 +1,34 @@
 {
-  "name": "ecg-monitor",
+  "name": "kekeli",
   "version": "0.1.0",
-  "description": "Remote power (light) & prepaid-meter monitor. Any device that can send an HTTP heartbeat is compatible.",
+  "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=20"
-  },
+  "description": "Kekeli (Ewe: 'light') — remote power & prepaid-meter monitor. Any device that can send an HTTP heartbeat is compatible.",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "better-sqlite3": "^11.8.1",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "nodemailer": "^6.10.0"
+    "next": "16.3.5",
+    "nodemailer": "^6.10.0",
+    "pg": "^8.13.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.12",
-    "@types/express": "^4.17.21",
-    "@types/node": "^22.10.7",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
