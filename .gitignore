@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.log
+
+# Local secrets & runtime data
+.env
+data/
+*.sqlite
+*.sqlite-journal
+*.db
